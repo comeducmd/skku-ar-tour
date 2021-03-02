@@ -1,4 +1,4 @@
-# skku-tetris
+# skku-ar-tour
 
 
 ## Code Convention
