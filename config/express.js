@@ -5,6 +5,8 @@ const methodOverride = require('method-override');
 var cors = require('cors');
 module.exports = function () {
     const app = express();
+    app.set("view engine", "ejs");
+    app.set("views", process.cwd() + "/views");
     app.use(compression());
     app.use(express.json());
     app.use(express.urlencoded({extended: true}));

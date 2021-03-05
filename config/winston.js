@@ -11,7 +11,7 @@ if (!fs.existsSync(logDir)) {
 
 const dailyRotateFileTransport = new transports.DailyRotateFile({
     level: 'debug',
-    filename: `${logDir}/%DATE%-smart-push.log`,
+    filename: `${logDir}/%DATE%.log`,
     datePattern: 'YYYY-MM-DD',
     zippedArchive: true,
     maxSize: '20m',
