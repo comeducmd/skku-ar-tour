@@ -37,7 +37,7 @@ function renderPlaces(places) {
 
         const icon = document.createElement('a-image');
         icon.id = id;
-        icon.setAttribute('place', '');
+        icon.setAttribute('cursor-listener', '');
         icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
         icon.setAttribute('src', '#marker');
         icon.setAttribute('scale', '30 30 30');
