@@ -13,23 +13,18 @@
             THREEx.ArToolkitContext.baseURL = 'https://jeromeetienne.github.io/AR.js/three.js/'
         </script>
         <script src="script/places.js"></script>
-    </head>
-    <body style='margin: 0; overflow: hidden;'>
         <script>
-            AFRAME.registerComponent('place', {
+            AFRAME.registerComponent('cursor-listener', {
                 init: function () {
-                    var place = this.el;
-
-                    place.addEventListener('click', function() {
-                        alert("place");
+                    this.el.addEventListener('click', function (evt) {
+                        alert("Clicked!");
                     });
                 }
             });
         </script>
-
+    </head>
+    <body style='margin: 0; overflow: hidden;'>
         <a-scene
-            cursor='rayOrigin: mouse; fuse: false;'
-            raycaster="objects: [gps-entity-place];"
             vr-mode-ui='enabled: false'
             embedded
             arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
@@ -38,7 +33,14 @@
                 <img id="marker" src="img/marker.png"/>
             </a-assets>
 
-            <a-camera gps-camera='minDistance: 30;' rotation-reader></a-camera>
+            <a-camera gps-camera='minDistance: 30;' rotation-reader>
+                <a-entity cursor="fuse: true; fuseTimeout: 500"
+                          position="0 0 -0.1"
+                          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.00"
+                          material="color: black; shader: flat">
+                </a-entity>
+            </a-camera>
+
         </a-scene>
     </body>
 </html>
