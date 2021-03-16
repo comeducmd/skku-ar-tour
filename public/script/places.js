@@ -22,7 +22,7 @@ function staticLoadPlaces() {
                 lng: 126.992820,
             },
             position: '0 -20 -60',
-        },
+        }
     ];
 }
 
