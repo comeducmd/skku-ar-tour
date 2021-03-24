@@ -21,6 +21,9 @@
                             const mrID = entityA.id.slice(2, 4)
                             console.log("clicked");
                             console.log(`${mrID} is found`);
+                            console.log('ID >>', mrID);
+                            localStorage.setItem(mrID, 1);                            
+
                             /* 저장 이벤트를 줄 땐 여기서 mrID를 로컬스토리지에 저장하는 방식 */
                             /* 로컬스토리지에 이미 저장되어 있으면 패스, 없으면 저장 */
                             if (entityA.hasAttribute("animation-mixer")) {
@@ -105,30 +108,37 @@
                     var randAsset = marker_assets[randIdx];
                     const entity = marker.getElementsByTagName("a-entity")[0];
 
+                    console.log('localStorage:', localStorage);
+
                     var cnt = 0;
 
                     //해당 건물 캐릭터 다 찾았는지 확인
-                    for (i = 0; i < localData.length; i++) {
-                        if (localData[i][0] == marker.id[0]) {
+                    for (i = 1; i <= marker_assets.length; i++) {
+                        console.log(marker.id[0] + i, '있는지 확인');
+                        if (localStorage.getItem(marker.id[0] + i) == 1) {
+                            console.log('있음');
                             cnt += 1;
                         }
                     }
+                    console.log('개수', cnt);
                     if (cnt == marker_assets.length) {
                         console.log("해당 건물의 캐릭터 다 찾음");
-                    } else {
+                    }
+                    else {
                         //로컬 스토리지에 이미 있는(이미 찾은) 캐릭터면 다시 랜덤값 뽑음
-                        while (localData.includes(randAsset)) {
-                            console.log('already found character');
+                        while (localStorage.getItem(marker.id[0] + (randIdx + 1)) == 1) {
+                            console.log('already found character', marker.id[0] + (randIdx + 1));
                             randIdx = Math.floor(Math.random() * marker_assets.length);
                             randAsset = marker_assets[randIdx];
                         }
+
+                        console.log('없는 값 >>', randIdx + 1);
 
                         entity.setAttribute("id", `ae${randAsset}`);
                         entity.setAttribute("gltf-model", `url(/models/${randAsset}.gltf)`);
                         entity.setAttribute("state", "true");
 
-                        localData.push(randAsset);
-                        localStorage.setItem('character', localData);
+                        console.log(marker.id[0] + (randIdx + 1), '클릭하면 이제 추가해줍니다');
 
                     }
 
