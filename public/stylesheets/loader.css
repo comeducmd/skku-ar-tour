@@ -1,4 +1,8 @@
 .loader {
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 50%;
+    display: flex;
     visibility: hidden;
     margin: 100px auto;
     font-size: 25px;

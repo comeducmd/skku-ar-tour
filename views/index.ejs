@@ -65,12 +65,11 @@
 
     <!-- 원형% 플러그인용 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="script//piechart.js"></script>
-    <script src="script//pie.js"></script>
+    <script src="script/piechart.js"></script>
+    <script src="script/pie.js"></script>
 </head>
 
 <body style="margin: 0px; overflow: hidden">
-    <div class="loader"></div>
     <a-scene vr-mode-ui='enabled: false' embedded arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
         <a-marker amarker id="AmarkerA" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternA.patt">
             <a-entity></a-entity>
@@ -95,6 +94,9 @@
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
+
+    <!-- 로딩 -->
+    <div class="loader"></div>
 
     <!-- 도감 버튼 -->
     <div class="buttonContainer">
@@ -206,7 +208,6 @@
         };
 
         init1();
-
     </script>
 </body>
 

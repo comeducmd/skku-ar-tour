@@ -82,6 +82,7 @@ function addBlock(){
 function onClick(){
     document.querySelector(".container").classList.add('modal-open');
     addBlock();
+    getPercent();
 }
 
 function onClose(){
@@ -89,6 +90,7 @@ function onClose(){
 }
 
 function init(){
+    addBlock();
     document.querySelector('button[data-action="dogam"]').addEventListener('click', onClick);
     document.querySelector(".js-close-modal").addEventListener('click',onClose);
     getPercent();
@@ -112,6 +114,18 @@ function getPercent() {
             <p class="scoreText">Total : 29</p>
         </div>
         `;
-
-    foundCntDiv.innerText =`Find : ${foundCnt}`;
+    
+    drawChart();
 }
+
+function drawChart() {
+    $('.chart').easyPieChart({
+        barColor: '#8CBA84',
+        trackColor: '#ccc',
+        lineCap: 'butt',
+        lineWidth: 20,
+        size: 90,
+        animate: 1000,
+        onStart: $.noop,
+        onStop: $.noop
+})};
