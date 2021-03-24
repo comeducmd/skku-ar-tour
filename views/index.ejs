@@ -10,6 +10,8 @@
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.0/dist/aframe-extras.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script>
         function registerMarker(tag, id) {
             AFRAME.registerComponent(tag, {
@@ -26,8 +28,6 @@
                             localStorage.setItem(mrID, 1);
                             document.querySelector(`.${mrID}`).querySelector("img").src=`color/${mrID}_C.png`
 
-                            /* 저장 이벤트를 줄 땐 여기서 mrID를 로컬스토리지에 저장하는 방식 */
-                            /* 로컬스토리지에 이미 저장되어 있으면 패스, 없으면 저장 */
                             if (entityA.hasAttribute("animation-mixer")) {
                                 entityA.removeAttribute("animation-mixer");
                             }
@@ -164,21 +164,32 @@
                     var randAsset = marker_assets[randIdx];
                     const entity = marker.getElementsByTagName("a-entity")[0];
 
-                    console.log('localStorage:', localStorage);
-
                     var cnt = 0;
+                    var building = '';
 
                     //해당 건물 캐릭터 다 찾았는지 확인
                     for (i = 1; i <= marker_assets.length; i++) {
-                        console.log(marker.id[0] + i, '있는지 확인');
                         if (localStorage.getItem(marker.id[0] + i) == 1) {
-                            console.log('있음');
                             cnt += 1;
                         }
                     }
-                    console.log('개수', cnt);
                     if (cnt == marker_assets.length) {
-                        console.log("해당 건물의 캐릭터 다 찾음"); $('body').sakura();
+                        console.log("found all the characters in this building");
+                        if (marker.id[0] == 'A') building = '호암관';
+                        else if (marker.id[0] == 'B') building = '경영관';
+                        else if (marker.id[0] == 'C') building = '경제관';
+                        else if (marker.id[0] == 'D') building = '수선관';
+                        else if (marker.id[0] == 'E') building = '법학관';
+                        else if (marker.id[0] == 'F') building = '국제관';
+                        else if (marker.id[0] == 'G') building = '인문관';
+
+                        swal({
+                            title: "축하합니다!",
+                            text: `${building}의 모든 명륜이를 발견했어요.`,
+                            icon: "success"
+                        });
+                        
+                        $('body').sakura();
                     } else {
                         //로컬 스토리지에 이미 있는(이미 찾은) 캐릭터면 다시 랜덤값 뽑음
                         while (localStorage.getItem(marker.id[0] + (randIdx + 1)) == 1) {
@@ -187,13 +198,11 @@
                             randAsset = marker_assets[randIdx];
                         }
 
-                        console.log('없는 값 >>', randIdx + 1);
-
                         entity.setAttribute("id", `ae${randAsset}`);
                         entity.setAttribute("gltf-model", `url(/models/${randAsset}.gltf)`);
                         entity.setAttribute("state", "true");
 
-                        console.log(marker.id[0] + (randIdx + 1), '클릭하면 이제 추가해줍니다');
+                        console.log('add', marker.id[0] + (randIdx + 1), 'when clicked');
 
                     }
 
