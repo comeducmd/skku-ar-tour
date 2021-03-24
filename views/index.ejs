@@ -139,14 +139,8 @@
             F: ["F1", "F2"],
             G: ["G1", "G2", "G3", "G4"]
         };
-        const init = () => {
+        const init1 = () => {
             const markers = document.querySelectorAll("a-marker");
-            var localData = localStorage.getItem('character');
-            if (localData != null) {
-                localData = localData.split(',');
-            } else {
-                localData = []
-            }
 
             markers.forEach((marker) => {
                 marker.addEventListener("markerFound", (e) => {
@@ -200,7 +194,7 @@
                 });
             });
         };
-        init();
+        init1();
     </script>
 </body>
 
