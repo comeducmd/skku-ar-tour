@@ -6,6 +6,7 @@ window.onload = () => {
 function staticLoadPlaces() {
     return [
         {
+            id: 'place1',
             name: '중앙학술정보관',
             location: {
                 lat: 37.58600973854398,
@@ -14,6 +15,7 @@ function staticLoadPlaces() {
             position: '0 0 -30',
         },
         {
+            id: 'place2',
             name: '금잔디광장',
             location: {
                 lat: 37.588227,
@@ -25,18 +27,23 @@ function staticLoadPlaces() {
 }
 
 function renderPlaces(places) {
-    let scene = document.querySelector('a-scene');
+    const scene = document.querySelector('a-scene');
 
     places.forEach((place) => {
+        let id = place.id;
         let latitude = place.location.lat;
         let longitude = place.location.lng;
         let position = place.position;
 
         const icon = document.createElement('a-image');
+        icon.id = id;
+        icon.setAttribute('cursor-listener', '');
         icon.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
         icon.setAttribute('src', '#marker');
         icon.setAttribute('scale', '30 30 30');
         icon.setAttribute('position', `${position}`);
+        icon.setAttribute('name', place.name);
+
         scene.appendChild(icon);
     });
 }
