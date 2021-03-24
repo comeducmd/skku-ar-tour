@@ -90,16 +90,48 @@
         };
         const init = () => {
             const markers = document.querySelectorAll("a-marker");
+            var localData = localStorage.getItem('character');
+            if (localData != null) {
+                localData = localData.split(',');
+            } else {
+                localData = []
+            }
+
             markers.forEach((marker) => {
                 marker.addEventListener("markerFound", (e) => {
                     console.log("marker is found", marker.id);
                     const marker_assets = assets[marker.id[0]];
-                    const randIdx = Math.floor(Math.random() * marker_assets.length);
-                    const randAsset = marker_assets[randIdx];
+                    var randIdx = Math.floor(Math.random() * marker_assets.length);
+                    var randAsset = marker_assets[randIdx];
                     const entity = marker.getElementsByTagName("a-entity")[0];
-                    entity.setAttribute("id", `ae${randAsset}`);
-                    entity.setAttribute("gltf-model", `url(/models/${randAsset}.gltf)`);
-                    entity.setAttribute("state", "true");
+
+                    var cnt = 0;
+
+                    //해당 건물 캐릭터 다 찾았는지 확인
+                    for (i = 0; i < localData.length; i++) {
+                        if (localData[i][0] == marker.id[0]) {
+                            cnt += 1;
+                        }
+                    }
+                    if (cnt == marker_assets.length) {
+                        console.log("해당 건물의 캐릭터 다 찾음");
+                    } else {
+                        //로컬 스토리지에 이미 있는(이미 찾은) 캐릭터면 다시 랜덤값 뽑음
+                        while (localData.includes(randAsset)) {
+                            console.log('already found character');
+                            randIdx = Math.floor(Math.random() * marker_assets.length);
+                            randAsset = marker_assets[randIdx];
+                        }
+
+                        entity.setAttribute("id", `ae${randAsset}`);
+                        entity.setAttribute("gltf-model", `#${randAsset}`);
+                        entity.setAttribute("state", "true");
+
+                        localData.push(randAsset);
+                        localStorage.setItem('character', localData);
+
+                    }
+
                 });
                 marker.addEventListener("markerLost", (e) => {
                     console.log("marker is lost", marker.id);
