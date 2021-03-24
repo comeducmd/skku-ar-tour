@@ -124,7 +124,7 @@
                         }
 
                         entity.setAttribute("id", `ae${randAsset}`);
-                        entity.setAttribute("gltf-model", `#${randAsset}`);
+                        entity.setAttribute("gltf-model", `url(/models/${randAsset}.gltf)`);
                         entity.setAttribute("state", "true");
 
                         localData.push(randAsset);
