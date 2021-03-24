@@ -22,7 +22,7 @@
                             console.log("clicked");
                             console.log(`${mrID} is found`);
                             console.log('ID >>', mrID);
-                            localStorage.setItem(mrID, 1);                            
+                            localStorage.setItem(mrID, 1);
 
                             /* 저장 이벤트를 줄 땐 여기서 mrID를 로컬스토리지에 저장하는 방식 */
                             /* 로컬스토리지에 이미 저장되어 있으면 패스, 없으면 저장 */
@@ -37,6 +37,9 @@
                         }
 
                     });
+                    this.el.addEventListener('model-loaded', e => {
+                        document.querySelector(".loader").style.visibility = "hidden";
+                    })
                 },
             });
         }
@@ -56,7 +59,8 @@
     </script>
     <script src="script/dogam.js"></script>
     <script src="https://kit.fontawesome.com/04c49f1c2f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/loader.css">
 
     <!-- 원형% 플러그인용 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -65,6 +69,7 @@
 </head>
 
 <body style="margin: 0px; overflow: hidden">
+    <div class="loader"></div>
     <a-scene vr-mode-ui='enabled: false' embedded arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
         <a-marker amarker id="AmarkerA" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternA.patt">
             <a-entity></a-entity>
@@ -107,13 +112,15 @@
                 <div class="info">
                     <div class="headerLeft">
                         <div class="title">SKKU 유생 도감</div>
-                        <div class="subtitle"><p>몇 명의 유생을 찾았는지 <br>확인해볼까요?</p></div>
+                        <div class="subtitle">
+                            <p>몇 명의 유생을 찾았는지 <br>확인해볼까요?</p>
+                        </div>
                     </div>
                     <div class="logoBox">
-                        <img class="logo" src="logo/usaeng.png"/>
+                        <img class="logo" src="logo/usaeng.png" />
                     </div>
                 </div>
-                
+
             </div>
             <div class="body">
                 <div class="calScore">
@@ -125,11 +132,12 @@
                 </div>
                 <div class="showScore"></div>
             </div>
-            
+
         </div>
     </div>
 
     <script>
+        let loadingDiv;
         const assets = {
             A: ["A1", "A2", "A3", "A4", "A5", "A6"],
             B: ["B1"],
@@ -141,10 +149,11 @@
         };
         const init1 = () => {
             const markers = document.querySelectorAll("a-marker");
-
+            loadingDiv = document.getElementsByClassName("loader")[0];
             markers.forEach((marker) => {
                 marker.addEventListener("markerFound", (e) => {
                     console.log("marker is found", marker.id);
+                    loadingDiv.style.visibility = "visible"
                     const marker_assets = assets[marker.id[0]];
                     var randIdx = Math.floor(Math.random() * marker_assets.length);
                     var randAsset = marker_assets[randIdx];
@@ -165,8 +174,7 @@
                     console.log('개수', cnt);
                     if (cnt == marker_assets.length) {
                         console.log("해당 건물의 캐릭터 다 찾음");
-                    }
-                    else {
+                    } else {
                         //로컬 스토리지에 이미 있는(이미 찾은) 캐릭터면 다시 랜덤값 뽑음
                         while (localStorage.getItem(marker.id[0] + (randIdx + 1)) == 1) {
                             console.log('already found character', marker.id[0] + (randIdx + 1));
@@ -187,6 +195,7 @@
                 });
                 marker.addEventListener("markerLost", (e) => {
                     console.log("marker is lost", marker.id);
+                    loadingDiv.style.visibility = "hidden"
                     const entity = marker.getElementsByTagName("a-entity")[0];
                     entity.removeAttribute("id");
                     entity.removeAttribute("gltf-model");
