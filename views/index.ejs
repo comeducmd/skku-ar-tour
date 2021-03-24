@@ -55,37 +55,6 @@
 
 <body style="margin: 0px; overflow: hidden">
     <a-scene vr-mode-ui='enabled: false' embedded arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-        <a-assets>
-            <a-asset-items id="A1" src="/models/A1.gltf"></a-asset-items>
-            <a-asset-items id="A2" src="/models/A2.gltf"></a-asset-items>
-            <a-asset-items id="A3" src="/models/A3.gltf"></a-asset-items>
-            <a-asset-items id="A4" src="/models/A4.gltf"></a-asset-items>
-            <a-asset-items id="A5" src="/models/A5.gltf"></a-asset-items>
-            <a-asset-items id="A6" src="/models/A6.gltf"></a-asset-items>
-            <a-asset-items id="B1" src="/models/B1.gltf"></a-asset-items>
-            <a-asset-items id="C1" src="/models/C1.gltf"></a-asset-items>
-            <a-asset-items id="C2" src="/models/C2.gltf"></a-asset-items>
-            <a-asset-items id="C3" src="/models/C3.gltf"></a-asset-items>
-            <a-asset-items id="C4" src="/models/C4.gltf"></a-asset-items>
-            <a-asset-items id="C5" src="/models/C5.gltf"></a-asset-items>
-            <a-asset-items id="C6" src="/models/C6.gltf"></a-asset-items>
-            <a-asset-items id="C7" src="/models/C7.gltf"></a-asset-items>
-            <a-asset-items id="C8" src="/models/C8.gltf"></a-asset-items>
-            <a-asset-items id="C9" src="/models/C9.gltf"></a-asset-items>
-            <a-asset-items id="D1" src="/models/D1.gltf"></a-asset-items>
-            <a-asset-items id="D2" src="/models/D2.gltf"></a-asset-items>
-            <a-asset-items id="D3" src="/models/D3.gltf"></a-asset-items>
-            <a-asset-items id="D4" src="/models/D4.gltf"></a-asset-items>
-            <a-asset-items id="D5" src="/models/D5.gltf"></a-asset-items>
-            <a-asset-items id="D6" src="/models/D6.gltf"></a-asset-items>
-            <a-asset-items id="E1" src="/models/E1.gltf"></a-asset-items>
-            <a-asset-items id="F1" src="/models/F1.gltf"></a-asset-items>
-            <a-asset-items id="F2" src="/models/F2.gltf"></a-asset-items>
-            <a-asset-items id="G1" src="/models/G1.gltf"></a-asset-items>
-            <a-asset-items id="G2" src="/models/G2.gltf"></a-asset-items>
-            <a-asset-items id="G3" src="/models/G3.gltf"></a-asset-items>
-            <a-asset-items id="G4" src="/models/G4.gltf"></a-asset-items>
-        </a-assets>
         <a-marker amarker id="AmarkerA" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternA.patt">
             <a-entity></a-entity>
         </a-marker>
@@ -129,7 +98,7 @@
                     const randAsset = marker_assets[randIdx];
                     const entity = marker.getElementsByTagName("a-entity")[0];
                     entity.setAttribute("id", `ae${randAsset}`);
-                    entity.setAttribute("gltf-model", `#${randAsset}`);
+                    entity.setAttribute("gltf-model", `url(/models/${randAsset}.gltf)`);
                     entity.setAttribute("state", "true");
                 });
                 marker.addEventListener("markerLost", (e) => {
