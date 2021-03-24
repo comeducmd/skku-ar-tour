@@ -9,6 +9,7 @@
     <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.0/dist/aframe-extras.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>
         function registerMarker(tag, id) {
             AFRAME.registerComponent(tag, {
@@ -56,15 +57,16 @@
         ]
         markers.forEach((marker) => {
             registerMarker(marker[0], marker[1])
-        })
+        });
     </script>
     <script src="script/dogam.js"></script>
+    <script src="script/sakura.js"></script>
     <script src="https://kit.fontawesome.com/04c49f1c2f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
     <link rel="stylesheet" href="stylesheets/loader.css">
+    <link rel="stylesheet" href="stylesheets/sakura.css">
 
     <!-- 원형% 플러그인용 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="script/piechart.js"></script>
     <script src="script/pie.js"></script>
 </head>
@@ -176,7 +178,7 @@
                     }
                     console.log('개수', cnt);
                     if (cnt == marker_assets.length) {
-                        console.log("해당 건물의 캐릭터 다 찾음");
+                        console.log("해당 건물의 캐릭터 다 찾음"); $('body').sakura();
                     } else {
                         //로컬 스토리지에 이미 있는(이미 찾은) 캐릭터면 다시 랜덤값 뽑음
                         while (localStorage.getItem(marker.id[0] + (randIdx + 1)) == 1) {
