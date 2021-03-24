@@ -1,30 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>AR TOUR IN SKKU</title>
-        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-        <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-        <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
-        <script>
-            THREEx.ArToolkitContext.baseURL = 'https://jeromeetienne.github.io/AR.js/three.js/'
-        </script>
-        <script src="script/places.js"></script>
-    </head>
-    <body style='margin: 0; overflow: hidden;'>
-        <a-scene
-            vr-mode-ui='enabled: false'
-            embedded
-            arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
-            <a-assets>
-                <img id="marker" src="img/marker.png"/>
-            </a-assets>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preview</title>
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.0/dist/aframe-extras.min.js"></script>
+    <script>
+        function registerMarker(tag, id) {
+            AFRAME.registerComponent(tag, {
+                init: function() {
+                    console.log(`${tag} is registered and initialized`)
+                    const markerA = document.querySelector(id);
+                    const entityA = markerA.getElementsByTagName("a-entity")[0];
+                    entityA.addEventListener("click", function(ev, target) {
+                        if (entityA.getAttribute("state") === "true") {
+                            const mrID = entityA.id.slice(2, 4)
+                            console.log("clicked");
+                            console.log(`${mrID} is found`);
+                            /* 저장 이벤트를 줄 땐 여기서 mrID를 로컬스토리지에 저장하는 방식 */
+                            /* 로컬스토리지에 이미 저장되어 있으면 패스, 없으면 저장 */
+                            if (entityA.hasAttribute("animation-mixer")) {
+                                entityA.removeAttribute("animation-mixer");
+                            }
+                            entityA.setAttribute(
+                                "animation-mixer",
+                                "loop:once; clampWhenFinished:true"
+                            );
+                            entityA.setAttribute("state", "false");
+                        }
 
-            <a-camera gps-camera='minDistance: 30;' rotation-reader></a-camera>
-        </a-scene>
-    </body>
+                    });
+                },
+            });
+        }
+
+        const markers = [
+            ["amarker", "#AmarkerA"],
+            ["bmarker", "#BmarkerB"],
+            ["cmarker", "#CmarkerC"],
+            ["dmarker", "#DmarkerD"],
+            ["emarker", "#EmarkerE"],
+            ["fmarker", "#FmarkerF"],
+            ["gmarker", "#GmarkerG"],
+        ]
+        markers.forEach((marker) => {
+            registerMarker(marker[0], marker[1])
+        })
+    </script>
+</head>
+
+<body style="margin: 0px; overflow: hidden">
+    <a-scene vr-mode-ui='enabled: false' embedded arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
+        <a-assets>
+            <a-asset-items id="A1" src="/models/A1.gltf"></a-asset-items>
+            <a-asset-items id="A2" src="/models/A2.gltf"></a-asset-items>
+            <a-asset-items id="A3" src="/models/A3.gltf"></a-asset-items>
+            <a-asset-items id="A4" src="/models/A4.gltf"></a-asset-items>
+            <a-asset-items id="A5" src="/models/A5.gltf"></a-asset-items>
+            <a-asset-items id="A6" src="/models/A6.gltf"></a-asset-items>
+            <a-asset-items id="B1" src="/models/B1.gltf"></a-asset-items>
+            <a-asset-items id="C1" src="/models/C1.gltf"></a-asset-items>
+            <a-asset-items id="C2" src="/models/C2.gltf"></a-asset-items>
+            <a-asset-items id="C3" src="/models/C3.gltf"></a-asset-items>
+            <a-asset-items id="C4" src="/models/C4.gltf"></a-asset-items>
+            <a-asset-items id="C5" src="/models/C5.gltf"></a-asset-items>
+            <a-asset-items id="C6" src="/models/C6.gltf"></a-asset-items>
+            <a-asset-items id="C7" src="/models/C7.gltf"></a-asset-items>
+            <a-asset-items id="C8" src="/models/C8.gltf"></a-asset-items>
+            <a-asset-items id="C9" src="/models/C9.gltf"></a-asset-items>
+            <a-asset-items id="D1" src="/models/D1.gltf"></a-asset-items>
+            <a-asset-items id="D2" src="/models/D2.gltf"></a-asset-items>
+            <a-asset-items id="D3" src="/models/D3.gltf"></a-asset-items>
+            <a-asset-items id="D4" src="/models/D4.gltf"></a-asset-items>
+            <a-asset-items id="D5" src="/models/D5.gltf"></a-asset-items>
+            <a-asset-items id="D6" src="/models/D6.gltf"></a-asset-items>
+            <a-asset-items id="E1" src="/models/E1.gltf"></a-asset-items>
+            <a-asset-items id="F1" src="/models/F1.gltf"></a-asset-items>
+            <a-asset-items id="F2" src="/models/F2.gltf"></a-asset-items>
+            <a-asset-items id="G1" src="/models/G1.gltf"></a-asset-items>
+            <a-asset-items id="G2" src="/models/G2.gltf"></a-asset-items>
+            <a-asset-items id="G3" src="/models/G3.gltf"></a-asset-items>
+            <a-asset-items id="G4" src="/models/G4.gltf"></a-asset-items>
+        </a-assets>
+        <a-marker amarker id="AmarkerA" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternA.patt">
+            <a-entity></a-entity>
+        </a-marker>
+        <a-marker bmarker id="BmarkerB" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternB.patt">
+            <a-entity></a-entity>
+        </a-marker>
+        <a-marker cmarker id="CmarkerC" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternC.patt">
+            <a-entity></a-entity>
+        </a-marker>
+        <a-marker dmarker id="DmarkerD" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternD.patt">
+            <a-entity></a-entity>
+        </a-marker>
+        <a-marker emarker id="EmarkerE" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternE.patt">
+            <a-entity></a-entity>
+        </a-marker>
+        <a-marker fmarker id="FmarkerF" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternF.patt">
+            <a-entity></a-entity>
+        </a-marker>
+        <a-marker gmarker id="GmarkerG" emitevents="true" cursor="rayOrigin: mouse" preset="custom" type="pattern" url="/marker-patts/patternG.patt">
+            <a-entity></a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+    <script>
+        const assets = {
+            A: ["A1", "A2", "A3", "A4", "A5", "A6"],
+            B: ["B1"],
+            C: ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9"],
+            D: ["D1", "D2", "D3", "D4", "D5", "D6"],
+            E: ["E1"],
+            F: ["F1", "F2"],
+            G: ["G1", "G2", "G3", "G4"]
+        };
+        const init = () => {
+            const markers = document.querySelectorAll("a-marker");
+            markers.forEach((marker) => {
+                marker.addEventListener("markerFound", (e) => {
+                    console.log("marker is found", marker.id);
+                    const marker_assets = assets[marker.id[0]];
+                    const randIdx = Math.floor(Math.random() * marker_assets.length);
+                    const randAsset = marker_assets[randIdx];
+                    const entity = marker.getElementsByTagName("a-entity")[0];
+                    entity.setAttribute("id", `ae${randAsset}`);
+                    entity.setAttribute("gltf-model", `#${randAsset}`);
+                    entity.setAttribute("state", "true");
+                });
+                marker.addEventListener("markerLost", (e) => {
+                    console.log("marker is lost", marker.id);
+                    const entity = marker.getElementsByTagName("a-entity")[0];
+                    entity.removeAttribute("id");
+                    entity.removeAttribute("gltf-model");
+                    entity.removeAttribute("state");
+                });
+            });
+        };
+        init();
+    </script>
+</body>
+
 </html>
