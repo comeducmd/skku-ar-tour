@@ -54,6 +54,14 @@
             registerMarker(marker[0], marker[1])
         })
     </script>
+    <script src="script/dogam.js"></script>
+    <script src="https://kit.fontawesome.com/04c49f1c2f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
+
+    <!-- 원형% 플러그인용 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="script//piechart.js"></script>
+    <script src="script//pie.js"></script>
 </head>
 
 <body style="margin: 0px; overflow: hidden">
@@ -81,6 +89,46 @@
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
+
+    <!-- 도감 버튼 -->
+    <div class="buttonContainer">
+        <button class="btn js-click-modal" data-action="dogam">
+            <i class="fas fa-torah"></i>
+        </button>
+    </div>
+
+    <!-- 도감 팝업 -->
+    <div class="container">
+        <div class="modal">
+            <div class="header">
+                <button class="btn js-close-modal" data-action="dogam">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="info">
+                    <div class="headerLeft">
+                        <div class="title">SKKU 유생 도감</div>
+                        <div class="subtitle"><p>몇 명의 유생을 찾았는지 <br>확인해볼까요?</p></div>
+                    </div>
+                    <div class="logoBox">
+                        <img class="logo" src="logo/usaeng.png"/>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="body">
+                <div class="calScore">
+                    <div class="chart" data-percent="55"></div>
+                    <div class="scoreTextbox">
+                        <p class="scoreText">Find : 23</p>
+                        <p class="scoreText">Total : 45</p>
+                    </div>
+                </div>
+                <div class="showScore"></div>
+            </div>
+            
+        </div>
+    </div>
+
     <script>
         const assets = {
             A: ["A1", "A2", "A3", "A4", "A5", "A6"],
