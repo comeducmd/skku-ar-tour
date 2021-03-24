@@ -23,6 +23,7 @@
                             console.log(`${mrID} is found`);
                             console.log('ID >>', mrID);
                             localStorage.setItem(mrID, 1);
+                            document.querySelector(`.${mrID}`).querySelector("img").src=`color/${mrID}_C.png`
 
                             /* 저장 이벤트를 줄 땐 여기서 mrID를 로컬스토리지에 저장하는 방식 */
                             /* 로컬스토리지에 이미 저장되어 있으면 패스, 없으면 저장 */
@@ -120,14 +121,14 @@
                         <img class="logo" src="logo/usaeng.png" />
                     </div>
                 </div>
-
             </div>
+
             <div class="body">
                 <div class="calScore">
-                    <div class="chart" data-percent="55"></div>
+                    <div class="chart" id="percent"></div>
                     <div class="scoreTextbox">
-                        <p class="scoreText">Find : 23</p>
-                        <p class="scoreText">Total : 45</p>
+                        <p class="scoreText" id="found">Find : 0</p>
+                        <p class="scoreText">Total : 29</p>
                     </div>
                 </div>
                 <div class="showScore"></div>
@@ -203,7 +204,9 @@
                 });
             });
         };
+
         init1();
+
     </script>
 </body>
 

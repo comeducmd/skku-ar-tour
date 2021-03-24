@@ -86,13 +86,13 @@
 
 .title {
     margin-bottom: 2vh;
-    font : bold x-large "맑은 고딕",sans-serif;
+    font : bold x-large Noto-sans,"맑은 고딕",sans-serif;
     color: white;
     position: relative;
 }
 
 .subtitle {
-    font : medium "맑은 고딕",sans-serif;
+    font : medium Noto-sans, "맑은 고딕",sans-serif;
     color: white;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .scoreText{
-    font : 800 large sans-serif;
+    font : 800 Noto-Sans, large sans-serif;
     margin:2%;
 }
 
@@ -152,7 +152,7 @@
 
 .blockname{
     margin: 4% 0% 3% 1%;
-    font : 800 large sans-serif;
+    font : 800 large Noto-Sans, sans-serif;
 }
 
 .newUsaeng{
