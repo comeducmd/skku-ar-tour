@@ -28,11 +28,15 @@ const usaengArr = [
     ["D6", "디자인학과"],
     ["E1", "글로벌리더학과"],
     ["F1", "글로벌경영"],
-    ["F2", "글로벌경제"]
+    ["F2", "글로벌경제"],
+    ["G1", "통계학과"],
+    ["G2", "영어영문학과"],
+    ["G3", "유학동양학과"],
+    ["G4", "독어독문학과"]
 ]
 
 // 건물 ID
-const blockArr = {"A":"호암관", "B":"경영관","C":"경제관","D":"수선관", "E":"법학관","F":"국제관"}
+const blockArr = {"A":"호암관", "B":"경영관","C":"경제관","D":"수선관", "E":"법학관","F":"국제관", "G":"인문관"}
 
 // 건물 생성 확인 리스트
 let blockList = []
@@ -104,6 +108,13 @@ function getPercent() {
     let percent = parseInt((foundCnt / 29) * 100);
 
     //percentDiv.setAttribute("data-percent", percent);
+    if (foundCnt == 29) {
+        swal({
+            title: "축하합니다!",
+            text: '모든 명륜이를 발견했어요. 각 건물에서 서식하는 모든 명륜이들을 기억해주세요!',
+            icon: "success"
+        });
+    }
 
     const calScore = document.getElementsByClassName('calScore')[0];
     calScore.innerHTML =
