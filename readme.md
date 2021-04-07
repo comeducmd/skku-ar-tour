@@ -6,7 +6,9 @@
 </a>
 
 ## Demo
-<img src="./assets/ForReadme/demo.gif" />
+<p align="center">
+  <img src="./assets/ForReadme/demo.gif" width="300"/>
+</p>
 
 ## Site
 ### [https://cmdev.skku.edu](https://cmdev.skku.edu)<br>
@@ -14,9 +16,32 @@
 <i>(Desktop 또는 Laptop을 이용하는 경우 버전 이슈로 인해 Firefox를 제외한 웹 브라우저에서 작동하지 않을 수 있습니다.)</i>
 
 ## Test Patterns
-<img src="./assets/patterns/호암.png" /><br>
+<p align="center">
+  <img src="./assets/patterns/호암.png" />
+</p>
 <i>(이 외의 패턴은 [./assets-patterns](https://github.com/comeducmd/skku-ar-tour/tree/master/assets/patterns)에서 확인 가능합니다.)</i><br>
 
+## Collaborators
+  <table align="center">
+    <th align="center"> 김서진 </th>
+    <th align="center"> 김희동 </th>
+    <th align="center"> 윤세린</th>
+    <th align="center"> 장정윤 </th>
+    <tr>
+        <td align="center">
+            <a href="https://github.com/SeojinSeojin"><img src="https://github.com/SeojinSeojin.png" width="250"/></a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/ruthetum"><img src="https://github.com/ruthetum.png" width="250"/></a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/Serin-Yoon"><img src="https://github.com/Serin-Yoon.png" width="250"/></a>
+        </td>
+        <td align="center">
+            <a href="https://github.com/yoonsome"><img src="https://github.com/yoonsome.png" width="250"/></a>
+        </td>
+    </tr>
+  </table>
 
 ## Code Convention
 | 메시지 | 설명 |
