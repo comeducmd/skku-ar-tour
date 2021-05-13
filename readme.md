@@ -2,7 +2,7 @@
 증강현실(AR) 기술을 활용한 학과 소개 웹 애플리케이션
 
 <a href="https://xscode.com/nicolocarpignoli/AR.js">
-  <img src="./assets/ForReadme/AR-JS-banner.png" />
+  <img src="./assets/ForReadme/AR-JS-banner-2.png" />
 </a>
 
 ## Demo
